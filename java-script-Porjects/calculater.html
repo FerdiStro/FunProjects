@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>Calculater</title>
+</head>
+<body id="body">
+
+<style>
+
+    #body{
+        background-color: rgba(131, 143, 152, 0.6);
+    }
+
+    .numButton{
+        display: inline-block;
+        height: 80px;
+        width:  80px;
+        background-color: #5f8bae;
+        border: black 1px solid;
+        margin-top: 2px;
+        font-size: 20px;
+    }
+    .numButton:hover{
+        background-color: #fbfbfb;
+    }
+    #actionString{
+        background-color: #21252b;
+        padding: 20px;
+        display: inline-block;
+        color: #838f98;
+        width: 100%;
+        margin-top: 1px;
+    }
+
+    #ig{
+        padding: 20px;
+        background-color: #282c34;
+        color: #5f8bae;
+        width: 100%;
+    }
+</style>
+
+
+
+<div id="number-Block" >
+    <button onclick="addNumber(1)" class="numButton">1</button>
+    <button onclick="addNumber(2)" class="numButton">2</button>
+    <button onclick="addNumber(3)" class="numButton">3</button>
+    <button onclick="addNumber(' + ')" class="numButton">+</button>
+
+    <button style="margin-left: 50px" class="numButton" onclick="minNumber()">C</button>
+
+    <br>
+    <button onclick="addNumber(4)" class="numButton">4</button>
+    <button onclick="addNumber(5)" class="numButton">5</button>
+    <button onclick="addNumber(6)" class="numButton">6</button>
+    <button onclick="addNumber(' - ')" class="numButton">-</button>
+    <br>
+    <button onclick="addNumber(7)" class="numButton">7</button>
+    <button onclick="addNumber(8)" class="numButton">8</button>
+    <button onclick="addNumber(9)" class="numButton">9</button>
+    <button onclick="addNumber(' * ')" class="numButton">*</button>
+    <br>
+    <button onclick="clearAll()" class="numButton" >CC</button>
+    <button onclick="addNumber(0)" class="numButton">0</button>
+
+    <button  class="numButton" onclick="calculate()">=</button>
+
+    <button onclick="addNumber(' : ')" class="numButton">:</button>
+</div>
+
+
+
+
+
+
+
+<br>
+
+
+<p style="color: #fdfdfd; display: inline; font-size: 20px">Number: </p><p id="actionString"> /  </p>
+
+<p style="color: #fdfdfd; display: inline; font-size: 20px">Result: </p>
+
+<p id="ig"> = </p>
+
+<script>
+    let actionString = ""
+
+    function clearAll(){
+        actionString = ""
+        document.getElementById("actionString").textContent = actionString;
+    }
+
+    function minNumber(){
+            document.getElementById("actionString").textContent = '/';
+            actionString =  actionString.slice(0, -1);
+            document.getElementById("actionString").textContent = actionString;
+    }
+
+    function addNumber(num) {
+        actionString = ""+  actionString + num
+
+
+
+        document.getElementById("actionString").textContent = actionString;
+
+    }
+
+    function calculate(){
+        document.getElementById("ig").textContent = parse(actionString)
+    }
+
+    function parse(str) {
+        return Function(`'use strict'; return (${str})`)()
+
+    }
+
+
+</script>
+</body>
+</html>

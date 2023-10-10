@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<title>BMI-Rechner</title>
+</head>
+<body>
+<h1>BMI-Rechner</h1>
+<p>Geben Sie Ihr Gewicht (in Kilogramm) und Ihre Größe (in Metern) ein, um Ihren BMI zu berechnen:</p>
+<br>
+
+<label for="weight">(kg):</label>
+<input type="number" id="weight" step="0.5" placeholder="kg">
+
+    <label for="height"> (m):</label>
+    <input type="number" id="height" step="0.01" placeholder="metern">
+
+
+    <button onclick="bmi()">BMI berechnen</button>
+
+
+
+        <p id="ergebnis"></p>
+
+        <script>
+            function bmi() {
+                const weight = parseFloat(document.getElementById("weight").value);
+                const height = parseFloat(document.getElementById("height").value);
+
+                const bmi = weight / (height * height);
+
+                const text = "BMI: " + bmi.toFixed(2) ;
+                document.getElementById("ergebnis").textContent = text;
+        }
+        </script>
+</body>
+</html>
