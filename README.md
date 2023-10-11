@@ -1,2 +1,2 @@
-# PythonFunProjects
-Python Project for Tests
+# FunProjects
+Testing some simple stuff
