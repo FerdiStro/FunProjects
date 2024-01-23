@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Input</title>
+</head>
+<body>
+<h1>Speech-to-API Example</h1>
+<p id="transcription">Hier wird die Transkription erscheinen</p>
+<button id="startButton">Starte die Aufnahme</button>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const startButton = document.getElementById('startButton');
+        const transcription = document.getElementById('transcription');
+
+        if ('webkitSpeechRecognition' in window) {
+            const recognition = new webkitSpeechRecognition();
+
+            recognition.continuous = false;
+
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                transcription.textContent = 'Transkription: ' + transcript;
+
+                sendToApi(transcript);
+            };
+
+            recognition.onerror = function(event) {
+                console.error('Fehler bei der Spracherkennung:', event.error);
+            };
+
+            startButton.addEventListener('click', function() {
+                recognition.start();
+            });
+        } else {
+            alert('Die Web Speech API wird in diesem Browser nicht unterstützt.');
+        }
+
+        function sendToApi(transcript) {
+
+            console.log('Sende an API:', transcript);
+        }
+    });
+</script>
+</body>
+</html>
